@@ -1,0 +1,372 @@
+:root {
+  --height: 200px;
+  --width: 100%;
+  --depth: 200px;
+  --color-shelf-back-panel: #a17941;
+  --color-shelf-bottom-panel: #795832;
+  --color-shelf-bottom-panel-front: #9b7d50;
+  --color-shelf-side-panel: #956e39;
+  --color-shelf-shadow: #653b17;
+}
+
+body {
+  height: 100vh;
+  /*width: 100vw;*/
+  padding: 0;
+  margin: 0;
+  /*background-image: url("./src/oldlibrary.png");*/
+  background-size: cover;
+  background-position: center;
+  background-color: gray;
+  background-repeat: no-repeat;
+  overflow-y: scroll;
+}
+
+#header{
+  width: 100%;
+  height: 10vh;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color:beige;
+  align-content: center;
+  top: 0px;
+  position: fixed;
+  z-index: 2;
+}
+
+
+.scrollable{
+  position: relative;
+  top: 10vh;
+  width: 100vw;
+  height: 50rem;
+  
+}
+
+#header a{
+  margin-left: 20px;
+  background-color: #422f00;
+}
+
+#Auth{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 20vw;
+  margin-right: 20px;
+  background-color: #5B6DCD;
+}
+
+#gap{
+  /*top:18vh;*/
+  width: 100%;
+  height: 15vh;
+}
+
+#searchBar{
+  top: 10vh;
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  gap:10px;
+  background: transparent;
+  align-items: center;
+  z-index: 1;
+  position: fixed;
+  left: 20px;
+}
+
+#searchBar input, select{
+  height: 50%;
+}
+
+.floor-thickness {
+  height: 1rem;
+  width: 100%;
+  background: var(--color-shelf-bottom-panel-front);
+  background-image: url("./src/wood-pattern.png");
+}
+
+.container {
+  width: var(--width);
+  height: var(--height);
+  perspective: 500px;
+  overflow: hidden;
+  position: absolute;
+  background-color: var(--color-shelf-side-panel);
+  background-image: url("./src/wood-pattern.png");
+}
+
+.cuboid {
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+  transform-style: preserve-3d;
+}
+
+.cuboid__face {
+  width: var(--width);
+  height: var(--height);
+  position: absolute;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  font-size: 1.5rem;
+  box-shadow: 0 1px 3px 0 black, 0 1px 2px -1px black;
+}
+
+.cuboid__face--front {
+  background: transparent;
+}
+
+.cuboid__face--back {
+  --extra-height: 3rem;  
+  transform: translateY(calc(var(--extra-height) * -1)) translateZ(calc(var(--depth) * -1)) rotateY(180deg);
+  height: calc(var(--height) + var(--extra-height));
+  background: var(--color-shelf-back-panel);
+  background-color: #422f00;
+  background-image: url("./src/wood-pattern.png");
+}
+
+.cuboid__face--bottom {
+  
+  transform: translateZ(calc(var(--depth) * -0.5)) translateY(calc(var(--height) * 0.5)) rotateX(-90deg);
+  height: var(--depth) ;
+  background: var(--color-shelf-bottom-panel);
+  background-image: url("./src/wood-pattern.png");
+}
+
+.books-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+  position: relative;
+  height: var(--height);
+  padding-bottom: 0.8rem;
+  box-sizing: border-box;
+  box-shadow: inset 0 10px 10px 0 var(--shadow-color, var(--color-shelf-shadow));
+}
+
+.book{
+  display: flex;
+  width:7rem;
+  height:calc(var(--height) - 3.5rem);
+  border-radius: 5px;
+  box-shadow: 0 0 5px -1px black, inset -1px 1px 2px rgba(255, 255, 255, 0.5);
+  justify-content: center;
+  align-items: center;
+  /*margin: auto;*/
+}
+
+#RequestSearch{
+  width: 30px;
+  height: 30px;
+}
+
+#CancelSearch{
+  width: 30px;
+  height: 30px;
+}
+
+#displayLibrary{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+a:link {
+    text-decoration: none;
+    
+}
+
+a:visited {
+    text-decoration: none;
+    
+}
+
+a:hover {
+    text-decoration: none;
+    
+}
+
+a:active {
+    text-decoration: none;
+    
+}
+
+.displayLivre{
+    
+    display: flex;
+    box-sizing: border-box;
+    width: 180px;
+    height: 200px;
+    border: solid #5B6DCD 10px;
+    margin: 5px;
+    text-align: center;
+}
+
+.infos{
+    padding : 1rem;
+    text-align: center;
+}
+
+.infos h2,h3,h4,p{
+
+    color: black;
+}
+
+.btn{
+    color: green;
+    box-sizing: border-box;
+    margin: 3px;
+    padding: 3px;
+    width: fit-content;
+    height: fit-content;
+    border: solid #26a8a2 10px;
+    border-radius: 15%;
+}
+
+#btnsDown{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+}
+
+#imgCover{
+  height: 17rem;
+  width: 12rem;
+}
+
+#BookFiche{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding-top: 120px;
+}
+
+#carrouselModify{
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  transform: translateX(25%);
+}
+
+#infoslivre{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.textTemplate{
+  text-align: center;
+  font-weight: bold;
+  width: 80%;
+  margin-left: 10px;
+}
+
+#formInfosLivre{
+  width: 50%;
+}
+
+#formInfosLivre form{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  row-gap: 1rem;
+}
+
+.hidden{
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+/*Bouton dropdown*/
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropbtn-side{
+  color: black;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn-side:hover, .dropbtn-side:focus {
+  background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-side{
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content-side{
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
