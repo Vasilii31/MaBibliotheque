@@ -20,15 +20,6 @@
     $db = connect();
     if(isset($_POST['valid']))
     {
-        if($_POST['valid'] == "Connexion")
-        {
-
-        }
-
-        if($_POST['valid'] == "Inscription")
-        {
-
-        }
 
         if(isset($_POST['f_username']) && !empty($_POST['f_username']) &&
             isset($_POST['f_password']) && !empty($_POST['f_password']))

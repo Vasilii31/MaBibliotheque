@@ -22,7 +22,7 @@
         }
     }
 
-    function Display_Shelves($library, $nbBooks, $nbShelves)
+    function Display_Shelves($library, $nbBooks, $nbShelves, $add)
     {
         if(count($library) > 0)
         {
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="books-container">';
-                DisplayMyBooks($library, $nbBooks, $i * $nbBooks);
+                DisplayMyBooks($library, $nbBooks, $i * $nbBooks, $add);
                 echo    '</div><div class="floor-thickness"></div>';
             }
         }
@@ -56,7 +56,7 @@
         return $library;
     }
 
-    function DisplayMyBooks($library, $nbBooks, $start)
+    function DisplayMyBooks($library, $nbBooks, $start, $add)
     {
         
         $limit = $nbBooks + $start;
@@ -66,7 +66,7 @@
         }
         for($i = $start; $i < $limit; $i++)
         {
-            echo    "<a href='ficheLivre.php?id=".$library[$i]['IdLivre']."'> 
+            echo    "<a href='ficheLivre.php?id=".$library[$i]['IdLivre']."&add=".$add."'> 
                         <div class='book' style='background: linear-gradient(to right, rgb(60, 13, 20) 3px, 
                         rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.25) 7px, 
                         rgba(255, 255, 255, 0.25) 10px, transparent 12px, 

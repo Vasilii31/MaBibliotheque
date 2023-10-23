@@ -7,6 +7,13 @@
         return $sReq->fetch();
     }
 
+    function Get_Code_Admin($db)
+    {
+        $sReq = $db->prepare("SELECT * FROM codeadmin");
+        $sReq->execute([]);
+        return $sReq->fetch();
+    }
+
     function Modify_Book($db, $id, $nom, $auteur, $genre, $fichier)
     {
         if($fichier!= "")
@@ -91,7 +98,8 @@
 
     function book_Add($db, $nom, $auteur, $genre, $dateLu, $cover)
     {
-    
+        $res = false;
+
         if($dateLu == "")
         {
             if($cover != "")
@@ -99,7 +107,7 @@
                 $sql = "INSERT INTO livres (Nom, Auteur, IdGenre, coverName) 
                 VALUES (?, ?, ?, ?)";
                 $dbh = $db->prepare($sql);
-                $dbh->execute(
+                $res = $dbh->execute(
                 [
                     $nom,
                     $auteur,
@@ -112,7 +120,7 @@
                 $sql = "INSERT INTO livres (Nom, Auteur, IdGenre) 
                 VALUES (?, ?, ?)";
                 $dbh = $db->prepare($sql);
-                $dbh->execute(
+                $res = $dbh->execute(
                 [
                     $nom,
                     $auteur,
@@ -126,23 +134,21 @@
             $sql = "INSERT INTO livres (Nom, Auteur, IdGenre, Lu) 
             VALUES (?, ?, ?, ?)";
             $dbh = $db->prepare($sql);
-            $dbh->execute(
+            $res = $dbh->execute(
             [
                 $nom,
                 $auteur,
                 $genre,
                 $dateLu
             ]);
-        }     
+        }    
+
+        return $res;
     }
 
     function get_All_Books_from_User($db, $id)
     {
-        $dbh = $db->prepare("SELECT * from livres as l 
-                    INNER join collectionlivre as cl on l.IdLivre = cl.IdLivre 
-                    INNER JOIN userliste as ul on ul.IdCollectionLivre = cl.IdCollectionLivre
-                    INNER JOIN users as u on u.idListe = ul.IdListe
-                    WHERE u.IdUser = ?");
+        $dbh = $db->prepare("SELECT * FROM livres as l inner join livresuser as lu on l.IdLivre = lu.IdLivre where lu.IdUser = ?");
         $dbh->execute([$id]);
         return $dbh->fetchAll();
     }
@@ -162,5 +168,35 @@
         return true;
     }
 
+function CreateLivreUser($db, $idLivre, $idUser)
+{
+    $sReq = "INSERT INTO livresuser (IdLivre, IdUser) VALUES (?, ?)";
+        $dbh = $db->prepare($sReq);
+        if($dbh->execute([
+            $idLivre,
+            $idUser
+        ]) == false)
+            return false;
+        return true;
+}
 
+function Add_Book_to_UserListe($db, $idUser)
+{
+    $idLivre = $db->lastInsertId();
+    $res = ($idLivre > 0) ? true : false;
+    if($idLivre > 0)
+    {
+        $res = CreateLivreUser($db, $idLivre, $idUser);
+    }
+    return $res;
+}
 
+function UpgradeUser($db, $id)
+{
+    $sql = "UPDATE users SET isAdmin = 1 WHERE IdUser = ?";
+            $dbh = $db->prepare($sql);
+            $dbh->execute(
+            [
+                $id              
+            ]);
+}

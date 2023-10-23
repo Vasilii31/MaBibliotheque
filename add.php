@@ -5,6 +5,14 @@
 
     $db = connect();
 
+    init_php_session();
+    if(!is_logged())
+    {
+         header("Location: auth.php");
+         exit;
+    }
+       
+
     if(isset($_GET['idadd']))
     {
         header("location: /index.php");
@@ -31,13 +39,12 @@ function AddGenre($db)
     
 function AddBook($db)
 {
+    var_dump($_POST);
     if(isset($_POST['Nom']) && isset($_POST['Auteur']) && isset($_POST['Genre']) && isset($_POST['lu']))
     {
         $uploadName = "";
         if($_FILES["fichier"]["name"] != "")
         {       
-            echo "CouCou";
-            var_dump($_FILES);
             $uploaddir = './bookCovers/';
             $filename = FileName_format($_POST['Nom']);
             $uploadName = File_exists_verif($filename, $uploaddir, $_FILES["fichier"]["name"]);
@@ -50,7 +57,17 @@ function AddBook($db)
             }
         }
 
-        book_Add($db, $_POST['Nom'], $_POST['Auteur'], $_POST['Genre'], $_POST['lu'], $uploadName);
+        $res = book_Add($db, $_POST['Nom'], $_POST['Auteur'], $_POST['Genre'], $_POST['lu'], $uploadName);
+        if($res == true)
+        {
+            $res = Add_Book_to_UserListe($db, $_SESSION['IdUser']);
+            if($res == true)
+                header("Location: DisplayAndRedirect.php?result=BOOKADDEDOK");
+            else
+                header("Location: DisplayAndRedirect.php?result=BOOKADDEDKO");
+        }
+        else
+            header("Location: DisplayAndRedirect.php?result=KO");
         exit;
     }
 }    

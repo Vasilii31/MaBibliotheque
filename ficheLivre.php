@@ -8,6 +8,8 @@
     {
         $infosLivre = Get_One_Book($db, $_GET['id']);
     }
+    
+  
 ?>
 
 <!DOCTYPE html>
@@ -16,13 +18,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Livre</title>
     <link rel="stylesheet" href="library.css" />
     <script src="ficheLivre.js"></script>
-    <script src="functionsLibrary.js"></script>
 </head>
 <body>
     <?php include('header.php'); ?>
+    <div id="centerBookFiche">
     <div id="BookFiche">
         <?php Import_Bg($infosLivre['coverName']); ?>
         <div id="carrouselModify">
@@ -59,12 +61,16 @@
             <a href="index.php">
             <div id="btnRetour" class="btn">Retour
             </div></a>
-
+            <?php if(isset($_GET['add']) && $_GET['add'] == 1) : ?>
+                <a href=<?php echo "AddToLibrary.php?id=".$_GET['id']; ?>>Ajouter à ma bibliothèque</a>
+            <?php //elseif( ) : ?>            
             <div id="btnModifier" class="btn">Modifier
             </div>
             <div id="btnSupprimer" class="btn">Supprimer
             </div>
+            <?php endif; ?>
         </div>
+    </div>
     </div>
 </body>
 </html>

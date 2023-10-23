@@ -52,6 +52,12 @@ title{
     height: 50px;
 }
 
+#authTitle
+{
+    width: 210px;
+    height: 100px; 
+}
+
 .inputfields{
     margin: 5px;
     border-radius: 5px;
