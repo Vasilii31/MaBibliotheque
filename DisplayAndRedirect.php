@@ -12,9 +12,17 @@
 
         switch($_GET["result"])
         {
-            case "BOOKDELETEDOK":
-                $output = "Le livre a été retiré de la base de données, ainsi que des bibliothèques des utilisateurs.";
+            case "GENREMODIFYOK":
+                $output = "Le genre a bien été modifié.";
                 $href = "index.php";
+                break;
+            case "GENREMODIFYKO":
+                $output = "Une erreur est survenue lors de l'ajout du nouveau genre.";
+                $href = "AddGenre.php";
+                break;
+            case "GENREADDEDKO":
+                $output = "Une erreur est survenue lors de l'ajout du nouveau genre.";
+                $href = "AddGenre.php";
                 break;
             case "BOOKREMOVEDOK":
                 $output = "Le livre a été retiré de votre bibliothèque!";

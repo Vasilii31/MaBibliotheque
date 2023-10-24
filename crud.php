@@ -90,10 +90,7 @@
     {
         $sql = "INSERT INTO genres (NomGenre) VALUES (?)";
         $dbh = $db->prepare($sql);
-        $dbh->execute(
-        [
-            $genre          
-        ]);
+        return($dbh->execute([$genre]));
     }
 
     function book_Add($db, $nom, $auteur, $genre, $dateLu, $cover)
@@ -224,3 +221,13 @@ function  Delete_All_Users_Book($db, $idlivre)
     return($dbh->execute([$idlivre]));
 }
 
+function Modify_Genre($db, $idgenre, $nom)
+{
+    $sql = "UPDATE genres SET NomGenre = ? WHERE IdGenre = ?";
+    $dbh = $db->prepare($sql);
+    return($dbh->execute(
+    [
+        $nom,
+        $idgenre
+    ]));
+}

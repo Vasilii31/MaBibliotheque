@@ -28,7 +28,7 @@
             <div class="btnAction" id="btnAdd">Ajouter un nouveau genre</div>
             <div class="btnAction" id="btnModify">Modifier un genre</div>
         </div>
-        <form id="ModifyGenreForm" class="hidden" action="">
+        <form id="ModifyGenreForm" method="POST" class="hidden" action="ProcessGenres.php">
             <select id="genres" name="Genre" required>
                 <option value="">Selectionnez un genre</option>
                     <?php
@@ -40,11 +40,11 @@
                 
                     ?>
             </select>
-            <input id="inputModify" class="hidden" type="text" required>
-            <input id="submitModify" class="hidden" type="submit" value="Ajouter">
+            <input id="inputModify" class="hidden" name="nom" type="text" required>
+            <input id="submitModify" class="hidden" type="submit" name="method" value="Modifier">
         </form>
-        <form id="AddForm" class="hidden" action="ProcessGenres.php">
-            <select id="genresExistants" name="Genre">
+        <form id="AddForm" class="hidden" method="POST" action="ProcessGenres.php">
+            <select id="genresExistants">
                 <option value="">Genres Existants :</option>
                     <?php
                         if(count($genres) > 0)
@@ -55,8 +55,8 @@
                 
                     ?>
             </select>
-            <input type="text" placeholder="Nom du Genre" required>
-            <input type="submit" value="Ajouter">
+            <input type="text" name="nom" placeholder="Nom du Genre" required>
+            <input type="submit" name="method" value="Ajouter">
         </form>
     </div>
 </body>
