@@ -2,7 +2,11 @@
     require('crud.php');
     require('dbConnect.php');
     require('display.php');
+    require("utils.php");
 
+    init_php_session();
+    if(!is_logged())
+        header("Location: auth.php");
     $db = connect();
     if(isset($_GET['id']))
     {
@@ -32,7 +36,7 @@
                 <?php Fiche_Infos_Livre($infosLivre);?>
             </div>
             <div id="formInfosLivre" class="hidden">
-                <form action=<?php if(isset($_GET['id'])){echo "/modifyBook.php?id=".$_GET['id'];}?> method="POST" enctype="multipart/form-data">
+                <form id="formModify" action=<?php if(isset($_GET['id'])){echo "/modifyBook.php?id=".$_GET['id'];}?> method="POST" enctype="multipart/form-data">
                     <input type="text" name="Nom" value="<?php echo $infosLivre['Nom'];?>" required>
                     <input type="text" name="Auteur" value="<?php echo $infosLivre['Auteur'];?>" required>
                     <select id="genres" name="Genre">
@@ -57,19 +61,20 @@
                 </form>
             </div>
         </div>
-        <div id="btnsDown">
-            <a href="index.php">
-            <div id="btnRetour" class="btn">Retour
-            </div></a>
+        <div class="btnsDown">
             <?php if(isset($_GET['add']) && $_GET['add'] == 1) : ?>
-                <a href=<?php echo "AddToLibrary.php?id=".$_GET['id']; ?>>Ajouter à ma bibliothèque</a>
-            <?php //elseif( ) : ?>            
-            <div id="btnModifier" class="btn">Modifier
-            </div>
-            <div id="btnSupprimer" class="btn">Supprimer
-            </div>
-            <?php endif; ?>
+                <a class="boutonLink" href=<?php echo "AddToLibrary.php?id=".$_GET['id']; ?>>Ajouter à ma bibliothèque</a>
+            <?php else : ?>   
+                <a class="boutonLink" href=<?php echo "RemoveFromLibrary.php?id=".$_GET['id']; ?>>Supprimer de ma bibliothèque</a>
+            <?php endif; ?>  
+            <a class="boutonLink" href="index.php">Retour</a>
         </div>
+        <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1) : ?>
+            <div class="btnsDownAdmin">
+                <a id="btnModifier" class="boutonLinkAdmin" >Modifier dans la BDD</a>
+                <a class="boutonLinkAdmin" href=<?php echo "DeleteFromBDD.php?id=".$_GET['id']; ?>>Supprimer de la Base de données</a>
+            </div>
+        <?php endif; ?>  
     </div>
     </div>
 </body>

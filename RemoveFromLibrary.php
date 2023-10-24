@@ -13,17 +13,17 @@ if(isset($_GET['id']) && intval($_GET['id']) > 0)
 {
     $db = connect();
     $res = Get_User_Book($db, $_GET['id'], $_SESSION["IdUser"]);
-    if(count($res) == 0)
+    if(count($res) != 0)
     {
-        $res = CreateLivreUser($db, $_GET['id'], $_SESSION['IdUser']);
+        $res = Delete_User_Book($db, $_GET['id'], $_SESSION['IdUser']);
         if($res == true)
-            header("Location: DisplayAndRedirect.php?result=BOOKADDEDOK");
+            header("Location: DisplayAndRedirect.php?result=BOOKREMOVEDOK");
         else 
-            header("Location: DisplayAndRedirect.php?result=BOOKADDEDKO");
+            header("Location: DisplayAndRedirect.php?result=KO");
     }
     else
     {
-        header("Location: DisplayAndRedirect.php?result=BOOKEXIST");
+        header("Location: DisplayAndRedirect.php?result=KO");
     }
     
 }   

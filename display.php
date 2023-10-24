@@ -16,9 +16,9 @@
     {
         if($livre != null)
         {
-            echo "<h2>".$livre['Nom']."</h2>";
-            echo "<h2>".$livre['Auteur']."</h2>";
-            echo "<h2>".$livre['NomGenre']."</h2>";
+            echo "<div class='infoLivre'>".$livre['Nom']."</div>";
+            echo "<div class='infoLivre'>".$livre['Auteur']."</div>";
+            echo "<div class='infoLivre'>".$livre['NomGenre']."</div>";
         }
     }
 

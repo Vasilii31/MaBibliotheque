@@ -19,6 +19,16 @@
             return false;
     }
 
+    function is_admin()
+    {
+        if(is_logged())
+        {
+            if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1)
+                return true;
+        }
+        return false;
+    }
+
     function clean_php_session() : void 
     {
         session_unset();

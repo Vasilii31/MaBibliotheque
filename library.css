@@ -10,8 +10,11 @@
 }
 
 body {
-  /*height: 100vh;*/
+  height: 100vh;
   /*width: 100vw;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0;
   margin: 0;
   background-image: url("./src/oldlibrary.png");
@@ -209,12 +212,41 @@ a:active {
     border-radius: 15%;
 }
 
-#btnsDown{
+.btnsDown{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   align-content: space-between;
+}
+
+
+.btnsDown a{
+  margin: 10px;
+  color: black;
+}
+
+.btnsDownAdmin{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+}
+
+.btnsDownAdmin a:link {
+  text-decoration: none;
+  
+}
+
+.btnsDownAdmin a:visited {
+  text-decoration: none;
+  
+}
+
+.btnsDownAdmin a{
+  margin: 10px;
+  color: black;
 }
 
 #imgCover{
@@ -234,12 +266,12 @@ a:active {
   justify-content: center;
   text-align: center;
   align-items: center;
-  padding-top: 120px;
+  padding: 20px;
   background-color: #d6a45dbb;
-  border-radius: 20%;
-  width: 45%;
-  height: 50%;
-  margin: 30px;
+  border-radius: 5%;
+  width: 80%;
+  /*height: 520px;*/
+  margin-top: 100px;
 }
 
 #carrouselModify{
@@ -276,6 +308,7 @@ a:active {
 }
 
 .hidden{
+  display: none;
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s, visibility 0.3s;
@@ -299,4 +332,98 @@ a:active {
   text-align: center;
   border-radius: 5%;
   padding: 5px;
+  margin-top: 70px;
+}
+
+.infoLivre{
+  width: 200px;
+  margin: 5px;
+  font-weight: bold;
+}
+
+#formModify{
+  width:280px;
+}
+
+#NoBook{
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  align-items: center;
+  background-color: #9b7d50;
+  width: 40%;
+  padding: 10px;
+  text-align: center;
+  font-family: 'Roboto', Georgia, Helvetica;
+}
+
+.boutonLink {
+  width: 110px;
+  height: 45px;
+  border-radius: 40px;
+  background-color: #57cc52;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.boutonLink:hover {
+  background-color: #eb6e6c;
+  color: #000000;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:link{
+  text-decoration: none;
+}
+
+a:visited{
+  text-decoration: none;
+}
+
+.boutonLinkAdmin {
+  width: 110px;
+  height: 45px;
+  border-radius: 40px;
+  background-color: #c02b2b;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.boutonLinkAdmin:hover {
+  background-color: #eb6e6c;
+  color: #000000;
+}
+
+
+.aButton{
+  width: 110px;
+  height: 45px;
+  border-radius: 40px;
+  background-color: #b7b73e;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.aButton:hover {
+  background-color: #c5c510;
+  color: #000000;
 }

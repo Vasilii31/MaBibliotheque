@@ -1,10 +1,29 @@
 <?php
+
+    require("utils.php");
+
+    init_php_session();
+    if(!is_logged())
+        header("Location: auth.php");
+
     if(isset($_GET))
     {
         // var_dump($_GET);
 
         switch($_GET["result"])
         {
+            case "BOOKDELETEDOK":
+                $output = "Le livre a été retiré de la base de données, ainsi que des bibliothèques des utilisateurs.";
+                $href = "index.php";
+                break;
+            case "BOOKREMOVEDOK":
+                $output = "Le livre a été retiré de votre bibliothèque!";
+                $href = "index.php";
+                break;
+            case "BOOKEXIST":
+                $output = "Ce livre existe déjà dans votre bibliothèque !";
+                $href = "index.php";
+                break;
             case "BOOKADDEDOK":
                 $output = "Livre ajouté avec succès à votre bibliothèque !";
                 $href = "index.php";
@@ -19,7 +38,7 @@
                 break;
             case "USERUPGRADEKO":
                 $output = "Code Administrateur incorrect.";
-                $href = "index.php";
+                $href = "AdminAuth.php";
                 break;
             default:
                 $output = "Une erreur est survenue. Veuillez réessayer plus tard.";
@@ -39,9 +58,9 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="display">
+    <div class="redirect_container">
         <p><?php echo $output;?></p>
-        <button><a href=<?php echo $href;?> id="retour">Retour</a></button>
+        <button class="button"><a href=<?php echo $href;?> id="retour">Retour</a></button>
     </div>
 </body>
 </html>

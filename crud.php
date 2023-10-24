@@ -48,7 +48,7 @@
     {
         $sql = "DELETE FROM livres WHERE IdLivre=?";
         $stmt= $db->prepare($sql);
-        $stmt->execute([$id]);
+        return($stmt->execute([$id]));
     }
 
     function get_genres($db)
@@ -200,3 +200,27 @@ function UpgradeUser($db, $id)
                 $id              
             ]);
 }
+
+function  Get_User_Book($db, $idlivre, $idUser)
+{
+    $dbh = $db->prepare("SELECT * FROM livresuser  where IdUser = ? and IdLivre = ?");
+    $dbh->execute([
+        $idUser,
+        $idlivre]);
+    return $dbh->fetchAll();
+}
+
+function  Delete_User_Book($db, $idlivre, $idUser)
+{
+    $dbh = $db->prepare("DELETE FROM livresuser  where IdUser = ? and IdLivre = ?");
+    return($dbh->execute([
+        $idUser,
+        $idlivre]));
+}
+
+function  Delete_All_Users_Book($db, $idlivre)
+{
+    $dbh = $db->prepare("DELETE FROM livresuser  where IdLivre = ?");
+    return($dbh->execute([$idlivre]));
+}
+

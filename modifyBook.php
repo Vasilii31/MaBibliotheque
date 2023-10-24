@@ -5,6 +5,12 @@ require('dbConnect.php');
 require('utils.php');
 
 $db = connect();
+init_php_session();
+if(!is_admin())
+{
+    header("location: auth.php");
+    exit;
+}
 header("location: /ficheLivre.php?id=".$_GET['id']);
 if(isset($_GET['id']) && isset($_POST['Nom']) && isset($_POST['Genre']) && isset($_POST['Auteur']))
 {

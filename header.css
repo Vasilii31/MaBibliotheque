@@ -6,7 +6,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color:beige;
+    background-color:#232323;
     align-content: center;
     top: 0px;
     position: fixed;
@@ -14,8 +14,8 @@
   }
 
   #header a{
-    margin-left: 20px;
-    padding: 20px;
+    /*margin-left: 20px;
+    padding: 20px;*/
   }
 
   /* Dropdown Button */
@@ -94,3 +94,84 @@
     display: flex;
     justify-content: flex-end;
   }
+  
+  #th1{
+    padding-left: 20px;
+    color: #c5c510;
+  }
+  #NDAuth{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #MAAuth{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 15px;
+    
+  }
+
+  #logout{
+    padding: 2px;
+    font-weight: bold;
+    font-style: italic;
+    color: #c02b2b;
+  }
+
+  #usname{
+    color: #c5c510;
+    padding-right: 15px;
+    margin: 2px;
+  }
+
+  #ModeAdmin {
+    padding-left: 10px;
+    width: 90px;
+    height: 25px;
+    border-radius: 40px;
+    background-color: #eb6e6c;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  
+  #ModeAdmin:hover {
+    background-color: #c02b2b;
+    color: #000000;
+  }
+
+.headerClickable{
+  padding-left: 10px;
+    width: 110px;
+    height: 45px;
+    border-radius: 40px;
+    background-color: #b7b73e;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.headerClickable:hover {
+  padding-left: 10px;
+    width: 110px;
+    height: 45px;
+    border-radius: 40px;
+    background-color: #c5c510;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

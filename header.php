@@ -8,13 +8,16 @@
         </a>
         <a href="index.php?add=true" class="headerClickable">Ajouter un livre</a>
         <?php if(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1) : ?>
-            <a href="index.php?add=true" class="headerClickable">Ajouter un genre</a>
+            <a href="AddGenre.php" class="headerClickable">Gérer les genres</a>
         <?php endif; ?>
             <div id="Auth">
-                <div>
-                    <a href="auth.php?action=logout">Deconnexion</a>
+                <div id="MAAuth">
+                    <div id="NDAuth">
+                        <p id="usname"><?php if(isset($_SESSION['UserName'])){echo $_SESSION['UserName'];} ?></p>
+                        <a id="logout" href="auth.php?action=logout">Deconnexion</a>
+                    </div>
                     <?php if(!isset($_SESSION["admin"]) || $_SESSION["admin"] != 1) : ?>
-                        <a href="AdminAuth.php">Mode Admin</a>
+                        <a id="ModeAdmin" href="AdminAuth.php">Mode Admin</a>
                     <?php endif; ?>
                 </div>
             </div>  

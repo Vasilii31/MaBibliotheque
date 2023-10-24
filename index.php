@@ -35,7 +35,14 @@
     <script src="functionsLibrary.js"></script>
 </head>
 <body>
-    <script>var myBooks = <?php echo json_encode($library);?>;</script>
+    <script>
+        var myBooks = <?php echo json_encode($library);?>;
+        var add = "false";
+        <?php if(isset($_GET['add']) && $_GET['add'] == "true") :?>
+            var add = <?php echo json_encode($_GET['add']); ?>;
+        <?php endif; ?>
+        //var add = <?php// echo json_encode()?>
+    </script>
     <?php require("header.php");?>  
     <?php if(isset($_GET['add']) && $_GET['add'] == "true") : ?> 
         <div id="AddDisplay">
@@ -46,18 +53,19 @@
                 <input  type="text" name="Nom" placeholder="Nom" required>
                 <input type="text" name="Auteur" placeholder="Auteur" required>
                 <select id="genres" name="Genre">
-                <?php
-                    $genres = get_genres($db);
-                    if(!isset($genres) || $genres == null)
-                    {
-                        echo "OUPS";
-                    }
-                    foreach($genres as $row)
-                    {
-                        echo '<option value="'.$row["IdGenre"].'">'.$row["NomGenre"].'</option>';
-                    }
-            
-                ?>
+                    <?php
+                        $genres = get_genres($db);
+                        if(!isset($genres) || $genres == null)
+                        {
+                            echo "OUPS";
+                        }
+                        foreach($genres as $row)
+                        {
+                            echo '<option value="'.$row["IdGenre"].'">'.$row["NomGenre"].'</option>';
+                        }
+                
+                    ?>
+                </select>
                 <input type="date" name="lu">
                 <input type="file" name="fichier">
                 <input type="submit" value="Ajouter">
@@ -76,17 +84,13 @@
         <input class="searchBarItem" id="RequestSearch" type="image" src="src/iconSearch.svg" />
         <input class="searchBarItem" id="CancelSearch" type="image" src="src/redCross.svg" />
     </div>
-    <?php 
-
-        if(!isset($_GET['add']))
-        {
-            if (count($library) == 0) 
-            {
-                echo "<p>Vous n'avez encore aucun livre dans votre bibliothèque !</p>";
-                echo "<a href='index.php?add=true'>Ajouter un nouveau livre</a>";
-            }
-        }        
-    ?>    
+    <?php if(!isset($_GET['add']) && count($library) == 0) : ?>
+            <div id="NoBook">
+                <p>Vous n'avez encore aucun livre dans votre bibliothèque !</p>
+                <a class="aButton" href='index.php?add=true'>Ajouter un nouveau livre</a>
+            </div>
+    <?php endif;?>    
+    <?php if(count($library) > 0) : ?>  
     <div class="scrollable" id="sD">
         <div id="shelf">
             <div class="container">
@@ -96,10 +100,11 @@
                     <div class="cuboid__face cuboid__face--back"></div>
                 </div>
             </div>
-            <div class="books-container"> 
-            </div>
+            <div class="books-container"></div>
             <div class="floor-thickness"></div>
         </div> 
-    </div>   
+    </div>  
+    <?php endif;?>
+
 </body>
 </html>
