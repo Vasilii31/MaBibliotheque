@@ -15,15 +15,30 @@
     if(isset($_GET['id']) && intval($_GET['id']) > 0)
     {
         $db = connect();
-        $res1 = delete_Book($db, $_GET['id']);
-        $res2 = Delete_All_Users_Book($db, $_GET['id']);
-        if($res1 && $res2)
+        $b = Get_One_Book($db, $_GET['id']);
+        if($b != false)
         {
-            header("Location: DisplayAndRedirect.php?result=BOOKDELETEDOK");
+            if($b["coverName"] != null)
+            {
+                $path = './bookCovers/'.$b["coverName"];
+                var_dump($path);
+                if(file_exists($path))
+                {
+                    unlink($path);
+                }
+            }
+            $res1 = delete_Book($db, $_GET['id']);
+            $res2 = Delete_All_Users_Book($db, $_GET['id']);
+            if($res1 && $res2)
+            {
+                header("Location: DisplayAndRedirect.php?result=BOOKDELETEDOK");
+            }
+            else
+                header("Location: DisplayAndRedirect.php?result=KO");
+            }
+            else{
+                header("Location: DisplayAndRedirect.php?result=KO");
         }
-        else
-            header("Location: DisplayAndRedirect.php?result=KO");
-    }
-    else{
-        header("Location: DisplayAndRedirect.php?result=KO");
+    
+        
     }

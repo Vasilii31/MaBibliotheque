@@ -12,6 +12,10 @@
 
         switch($_GET["result"])
         {
+            case "BOOKDELETEDOK":
+                $output = "Le livre a été supprimé de la base de données et celle des utilisateurs.";
+                $href = "index.php";
+                break;
             case "GENREMODIFYOK":
                 $output = "Le genre a bien été modifié.";
                 $href = "index.php";
