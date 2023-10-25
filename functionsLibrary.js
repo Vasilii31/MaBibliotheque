@@ -100,7 +100,7 @@ function CreateBook(shelf, book)
     if(add === "true")
         clickable.href = "ficheLivre.php?id=" + book[0] + "&add=1";
     else
-        clickable.href = "ficheLivre.php?id=" + book[0];
+        clickable.href = "ficheLivre.php?id=" + book[0] + "&add=0";
     const divBook = document.createElement("div");
     divBook.className = "book";
     if(book[5] != null)

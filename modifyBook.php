@@ -11,7 +11,7 @@ if(!is_admin())
     header("location: auth.php");
     exit;
 }
-header("location: /ficheLivre.php?id=".$_GET['id']);
+header("location: /ficheLivre.php?id=".$_GET['id']."&add=".$_GET['add']);
 if(isset($_GET['id']) && isset($_POST['Nom']) && isset($_POST['Genre']) && isset($_POST['Auteur']))
 {
     $uploadName = "";

@@ -36,7 +36,7 @@
                 <?php Fiche_Infos_Livre($infosLivre);?>
             </div>
             <div id="formInfosLivre" class="hidden">
-                <form id="formModify" action=<?php if(isset($_GET['id'])){echo "/modifyBook.php?id=".$_GET['id'];}?> method="POST" enctype="multipart/form-data">
+                <form id="formModify" action=<?php if(isset($_GET['id']) && isset($_GET['add'])){echo "/modifyBook.php?id=".$_GET['id']."&add=".$_GET['add'];}?> method="POST" enctype="multipart/form-data">
                     <input type="text" name="Nom" value="<?php echo $infosLivre['Nom'];?>" required>
                     <input type="text" name="Auteur" value="<?php echo $infosLivre['Auteur'];?>" required>
                     <select id="genres" name="Genre">
