@@ -24,6 +24,10 @@
                 $output = "Une erreur est survenue lors de l'ajout du nouveau genre.";
                 $href = "AddGenre.php";
                 break;
+            case "GENREADDEDOK":
+                $output = "Le nouveau genre a bien été ajouté à la base de données.";
+                $href = "index.php";
+                break;
             case "GENREADDEDKO":
                 $output = "Une erreur est survenue lors de l'ajout du nouveau genre.";
                 $href = "AddGenre.php";
