@@ -1,21 +1,21 @@
 <?php
-    require('crud.php');
-    require('dbConnect.php');
-    require('utils.php');
+    require('../Librairies/crud.php');
+    require('../Librairies/dbConnect.php');
+    require('../Librairies/utils.php');
 
     $db = connect();
 
     init_php_session();
     if(!is_logged())
     {
-         header("Location: auth.php");
+         header("Location: ../auth.php");
          exit;
     }
        
 
     if(isset($_GET['idadd']))
     {
-        header("location: /index.php");
+        header("location: ../index.php");
         switch($_GET['idadd'])
         {
             case 'genre':
@@ -45,7 +45,7 @@ function AddBook($db)
         $uploadName = "";
         if($_FILES["fichier"]["name"] != "")
         {       
-            $uploaddir = './bookCovers/';
+            $uploaddir = '../bookCovers/';
             $filename = FileName_format($_POST['Nom']);
             $uploadName = File_exists_verif($filename, $uploaddir, $_FILES["fichier"]["name"]);
             $uploadfile = $uploaddir.$uploadName;   
@@ -62,12 +62,12 @@ function AddBook($db)
         {
             $res = Add_Book_to_UserListe($db, $_SESSION['IdUser']);
             if($res == true)
-                header("Location: DisplayAndRedirect.php?result=BOOKADDEDOK");
+                header("Location: ../DisplayAndRedirect.php?result=BOOKADDEDOK");
             else
-                header("Location: DisplayAndRedirect.php?result=BOOKADDEDKO");
+                header("Location: ../DisplayAndRedirect.php?result=BOOKADDEDKO");
         }
         else
-            header("Location: DisplayAndRedirect.php?result=KO");
+            header("Location: ../DisplayAndRedirect.php?result=KO");
         exit;
     }
 }    

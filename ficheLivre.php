@@ -1,8 +1,8 @@
 <?php
-    require('crud.php');
-    require('dbConnect.php');
-    require('display.php');
-    require("utils.php");
+    require('./Librairies/crud.php');
+    require('./Librairies/dbConnect.php');
+    require('./Librairies/display.php');
+    require("./Librairies/utils.php");
 
     init_php_session();
     if(!is_logged())
@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livre</title>
     <link rel="stylesheet" href="library.css" />
-    <script src="ficheLivre.js"></script>
+    <script src="javascript/ficheLivre.js"></script>
 </head>
 <body>
     <?php include('header.php'); ?>
@@ -36,7 +36,7 @@
                 <?php Fiche_Infos_Livre($infosLivre);?>
             </div>
             <div id="formInfosLivre" class="hidden">
-                <form id="formModify" action=<?php if(isset($_GET['id']) && isset($_GET['add'])){echo "/modifyBook.php?id=".$_GET['id']."&add=".$_GET['add'];}?> method="POST" enctype="multipart/form-data">
+                <form id="formModify" action=<?php if(isset($_GET['id']) && isset($_GET['add'])){echo "BackEnd/modifyBook.php?id=".$_GET['id']."&add=".$_GET['add'];}?> method="POST" enctype="multipart/form-data">
                     <input type="text" name="Nom" value="<?php echo $infosLivre['Nom'];?>" required>
                     <input type="text" name="Auteur" value="<?php echo $infosLivre['Auteur'];?>" required>
                     <select id="genres" name="Genre">
@@ -63,16 +63,16 @@
         </div>
         <div class="btnsDown">
             <?php if(isset($_GET['add']) && $_GET['add'] == 1) : ?>
-                <a class="boutonLink" href=<?php echo "AddToLibrary.php?id=".$_GET['id']; ?>>Ajouter à ma bibliothèque</a>
+                <a class="boutonLink" href=<?php echo "BackEnd/AddToLibrary.php?id=".$_GET['id']; ?>>Ajouter à ma bibliothèque</a>
             <?php else : ?>   
-                <a class="boutonLink" href=<?php echo "RemoveFromLibrary.php?id=".$_GET['id']; ?>>Supprimer de ma bibliothèque</a>
+                <a class="boutonLink" href=<?php echo "BackEnd/RemoveFromLibrary.php?id=".$_GET['id']; ?>>Supprimer de ma bibliothèque</a>
             <?php endif; ?>  
             <a class="boutonLink" href="index.php">Retour</a>
         </div>
         <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1) : ?>
             <div class="btnsDownAdmin">
                 <a id="btnModifier" class="boutonLinkAdmin" >Modifier dans la BDD</a>
-                <a class="boutonLinkAdmin" href=<?php echo "DeleteFromBDD.php?id=".$_GET['id']; ?>>Supprimer de la Base de données</a>
+                <a class="boutonLinkAdmin" href=<?php echo "BackEnd/DeleteFromBDD.php?id=".$_GET['id']; ?>>Supprimer de la Base de données</a>
             </div>
         <?php endif; ?>  
     </div>

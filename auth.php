@@ -1,14 +1,8 @@
 <?php
-    /*$pass = "monmdp";
-    $hash = password_hash($pass, PASSWORD_BCRYPT, ['cost' => 10]);
-    echo $hash;
-    echo "<br>";
-    echo password_verify($pass, $hash);
-    exit;*/
 
-    require('crud.php');
-    require('dbConnect.php');
-    require('utils.php');
+    require('./Librairies/crud.php');
+    require('./Librairies/dbConnect.php');
+    require('./Librairies/utils.php');
     init_php_session();
     
     if(isset($_GET['action']) && $_GET['action'] == "logout")
@@ -16,7 +10,7 @@
         clean_php_session();
         header("Location: auth.php");
     }
-
+    
     $db = connect();
     if(isset($_POST['valid']))
     {
@@ -82,7 +76,7 @@
     <div class="content">
         <div class="formAuth">
             <h1>Se connecter</h1>
-            <form class="formAuthForm" action="processAuth.php" method="post">
+            <form class="formAuthForm" action="/BackEnd/processAuth.php" method="post">
                 <input  class="inputfields" type="email" name="f_username" placeholder="Adresse Mail">
                 <input  class="inputfields" type="password" id="mdp" name="f_password" placeholder="Mot de passe">
                 <p>Afficher le mot de passe :</p><button type="button" onclick="show_PasswordC()">O</button>
@@ -91,7 +85,7 @@
         </div>
         <div class="formAuth">
             <h1>S'inscrire</h1>
-            <form class="formAuthForm" id="formSignUp" action="processAuth.php" method="post">
+            <form class="formAuthForm" id="formSignUp" action="/BackEnd/processAuth.php" method="post">
                 <input  class="inputfields" type="email" name="f_username" placeholder="Adresse Mail" required>
                 <input  class="inputfields" type="password" id="pwd" name="f_password" placeholder="Mot de passe" required>
                 <input class="inputfields" type="password" id="cpwd" name="f_passwordConfirm" placeholder="Confirmation du Mot de passe" required>
@@ -101,6 +95,6 @@
             </form>
         </div>
     </div>
-    <script src="/auth.js"></script>
+    <script src="/javascript/auth.js"></script>
 </body>
 </html>

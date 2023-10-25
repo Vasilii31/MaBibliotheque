@@ -1,17 +1,17 @@
 <?php
 
-require('crud.php');
-require('dbConnect.php');
-require('utils.php');
+require('../Librairies/crud.php');
+require('../Librairies/dbConnect.php');
+require('../Librairies/utils.php');
 
 $db = connect();
 init_php_session();
 if(!is_admin())
 {
-    header("location: auth.php");
+    header("location: ../auth.php");
     exit;
 }
-header("location: /ficheLivre.php?id=".$_GET['id']."&add=".$_GET['add']);
+header("location: ../ficheLivre.php?id=".$_GET['id']."&add=".$_GET['add']);
 if(isset($_GET['id']) && isset($_POST['Nom']) && isset($_POST['Genre']) && isset($_POST['Auteur']))
 {
     $uploadName = "";
@@ -19,7 +19,7 @@ if(isset($_GET['id']) && isset($_POST['Nom']) && isset($_POST['Genre']) && isset
     {   
         var_dump($_FILES);
         echo "file detected...Uploading...";    
-        $uploaddir = './bookCovers/';
+        $uploaddir = '../bookCovers/';
         $filename = FileName_format($_POST['Nom']);
         //$uploadName = basename(str_replace(' ', '', $_POST['Nom']).'.'.pathinfo($_FILES["fichier"]["name"], PATHINFO_EXTENSION));
         $uploadName = File_exists_verif($filename, $uploaddir, $_FILES["fichier"]["name"]);

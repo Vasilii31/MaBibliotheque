@@ -1,13 +1,13 @@
 <?php
 
-    require('crud.php');
-    require('dbConnect.php');
-    require("utils.php");
+    require('../Librairies/crud.php');
+    require('../Librairies/dbConnect.php');
+    require("../Librairies/utils.php");
 
     init_php_session();
     if(!is_admin())
     {
-        header("Location: auth.php");
+        header("Location: ../auth.php");
         exit;
     }
         
@@ -20,7 +20,7 @@
         {
             if($b["coverName"] != null)
             {
-                $path = './bookCovers/'.$b["coverName"];
+                $path = '../bookCovers/'.$b["coverName"];
                 var_dump($path);
                 if(file_exists($path))
                 {
@@ -31,13 +31,13 @@
             $res2 = Delete_All_Users_Book($db, $_GET['id']);
             if($res1 && $res2)
             {
-                header("Location: DisplayAndRedirect.php?result=BOOKDELETEDOK");
+                header("Location: ../DisplayAndRedirect.php?result=BOOKDELETEDOK");
             }
             else
-                header("Location: DisplayAndRedirect.php?result=KO");
+                header("Location: ../DisplayAndRedirect.php?result=KO");
             }
             else{
-                header("Location: DisplayAndRedirect.php?result=KO");
+                header("Location: ../DisplayAndRedirect.php?result=KO");
         }
     
         

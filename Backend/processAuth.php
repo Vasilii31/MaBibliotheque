@@ -1,7 +1,7 @@
 <?php
-    require('crud.php');
-    require('dbConnect.php');
-    require('utils.php');
+    require('../Librairies/crud.php');
+    require('../Librairies/dbConnect.php');
+    require('../Librairies/utils.php');
 
 
     $db = connect();
@@ -14,7 +14,7 @@
             $user = Get_User($db, $_POST['f_username']);
             if($user != false)
             {
-                header("location: auth.php?SignSuccess=SignUpKOIdTaken");
+                header("location: ../auth.php?SignSuccess=SignUpKOIdTaken");
                 exit;
             }
             else
@@ -23,13 +23,13 @@
                 $res = CreateUser($db, $_POST['f_username'], $hmdp);
                 if($res == false)
                 {
-                    header("location: auth.php?SignSuccess=SignUpKO");
+                    header("location: ../auth.php?SignSuccess=SignUpKO");
                     exit;
                 }
                 else
                 {
                     //$res = CreateListeUser($db);
-                    header("location: auth.php?SignSuccess=SignUpOK");
+                    header("location: ../auth.php?SignSuccess=SignUpOK");
                     exit;
                 }
             }
@@ -40,7 +40,7 @@
             $user = Get_User($db, $_POST['f_username']);
             if($user == false)
             {
-                header("location: auth.php?SignSuccess=SignInKO");
+                header("location: ../auth.php?SignSuccess=SignInKO");
                 exit;
             }
             else
@@ -52,11 +52,11 @@
                     $_SESSION['UserName'] = $_POST['f_username'];
                     $_SESSION['IdUser'] = $user['IdUser'];
                     $_SESSION['admin'] = $user['IsAdmin'];
-                    header("location: index.php");
+                    header("location: ../index.php");
                 }
                 else
                 {
-                    header("location: auth.php?SignSuccess=SignInKO");
+                    header("location: ../auth.php?SignSuccess=SignInKO");
                     exit;
                 }
             }
@@ -68,15 +68,15 @@
             {
                 UpgradeUser($db, $_SESSION["IdUser"]);
                 $_SESSION["admin"] = 1;
-                header("Location: DisplayAndRedirect.php?result=USERUPGRADEOK");
+                header("Location: ../DisplayAndRedirect.php?result=USERUPGRADEOK");
             }
             else
-                header("Location: DisplayAndRedirect.php?result=USERUPGRADEKO");
+                header("Location: ../DisplayAndRedirect.php?result=USERUPGRADEKO");
 
         }
         
     }
     else
-            header("location: auth.php?SignSuccess=SignUpKO");
+            header("location: ../auth.php?SignSuccess=SignUpKO");
     
 

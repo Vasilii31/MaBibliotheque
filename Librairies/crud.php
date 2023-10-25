@@ -231,3 +231,15 @@ function Modify_Genre($db, $idgenre, $nom)
         $idgenre
     ]));
 }
+
+function get_All_Books_Notyet_Added($db, $idUser)
+{
+    $dbh = $db->prepare("SELECT * FROM livres AS l 
+                        INNER JOIN genres AS g ON l.IdGenre = g.IdGenre 
+                        WHERE IdLivre NOT IN
+                            (SELECT livresuser.IdLivre FROM livres 
+                            INNER JOIN livresuser ON livres.IdLivre = livresuser.IdLivre 
+                            WHERE livresuser.IdUser = ?)");
+    $dbh->execute([$idUser]);
+    return $dbh->fetchAll();
+}

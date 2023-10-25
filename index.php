@@ -1,8 +1,8 @@
 <?php
-    require('crud.php');
-    require('dbConnect.php');
-    require('display.php');
-    require('utils.php');
+    require('./Librairies/crud.php');
+    require('./Librairies/dbConnect.php');
+    require('./Librairies/display.php');
+    require('./Librairies/utils.php');
 
     init_php_session();
 
@@ -10,7 +10,7 @@
         header("Location: auth.php");
     $db = connect();
     if(isset($_GET['add']) && $_GET['add'] == true)
-        $library = get_All_Books($db);
+        $library = get_All_Books_Notyet_Added($db, $_SESSION['IdUser']);
     else
         $library = get_All_Books_from_User($db, $_SESSION['IdUser']);
     //var_dump($library);
@@ -32,7 +32,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ma bibliothèque</title>
     <link rel="stylesheet" href="library.css" />
-    <script src="functionsLibrary.js"></script>
+    <script src="javascript/functionsLibrary.js"></script>
 </head>
 <body>
     <script>
@@ -49,7 +49,7 @@
             <p>Ici vous sont proposés tout les livres de notre base de données. Vous pouvez cliquer dessus pour 
                 les ajouter à votre bibliothèque personnelle. Si le livre que vous cherchez n'existe pas, vous pouvez en ajouter un nouveau ici:
             </p>
-            <form action="/add.php?idadd=livre" method="POST" enctype="multipart/form-data">
+            <form action="BackEnd/add.php?idadd=livre" method="POST" enctype="multipart/form-data">
                 <input  type="text" name="Nom" placeholder="Nom" required>
                 <input type="text" name="Auteur" placeholder="Auteur" required>
                 <select id="genres" name="Genre">
@@ -72,7 +72,7 @@
             </form>
         </div>
     <?php endif; ?>
-    <div id="searchBar">
+    <div <?php if(!isset($_GET['add']) || $_GET['add'] != "true"){echo 'style="padding-top: 70px;"';}?>  id="searchBar">
         <input class="searchBarItem" type="text" id="search" name="recherche" placeholder="Votre recherche" />
         <select class="searchBarItem" name="searchBy" id="searchBySelector">
             <option value="">Rechercher Par</option>

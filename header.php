@@ -1,6 +1,6 @@
 
 <link rel="stylesheet" href="header.css" />
-<script src="header.js"></script>
+<script src="javascript/header.js"></script>
 
 <div id="header">
         <a id="t" href="index.php">

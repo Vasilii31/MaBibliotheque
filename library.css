@@ -315,7 +315,7 @@ a:active {
 }
 
 #searchBar{
-  padding: 20px;
+  padding-top: 20px;
   display: flex;
   flex-direction: row;
 }

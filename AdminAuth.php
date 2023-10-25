@@ -1,10 +1,4 @@
 <?php
-    /*$pass = "monmdp";
-    $hash = password_hash($pass, PASSWORD_BCRYPT, ['cost' => 10]);
-    echo $hash;
-    echo "<br>";
-    echo password_verify($pass, $hash);
-    exit;*/
 
     require('crud.php');
     require('dbConnect.php');

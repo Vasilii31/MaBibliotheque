@@ -59,8 +59,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     CreateLibrary(myBooks);
     initializeBooksEvents();
     initializeButtons();
-
-    
 })
 
 function CreateLibrary(booksArray)
