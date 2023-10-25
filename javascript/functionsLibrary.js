@@ -59,6 +59,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     CreateLibrary(myBooks);
     initializeBooksEvents();
     initializeButtons();
+    if(myBooks.length === 0)
+    {
+        let searchBar = document.getElementById("searchBar");
+        searchBar.style = "display: none";
+    }
 })
 
 function CreateLibrary(booksArray)

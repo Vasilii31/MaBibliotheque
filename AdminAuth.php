@@ -1,8 +1,8 @@
 <?php
 
-    require('crud.php');
-    require('dbConnect.php');
-    require('utils.php');
+    require('Librairies/crud.php');
+    require('Librairies/dbConnect.php');
+    require('Librairies/utils.php');
     init_php_session();
     
     if(!is_logged())

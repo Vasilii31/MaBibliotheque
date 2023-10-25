@@ -72,7 +72,7 @@
             </form>
         </div>
     <?php endif; ?>
-    <div <?php if(!isset($_GET['add']) || $_GET['add'] != "true"){echo 'style="padding-top: 70px;"';}?>  id="searchBar">
+    <div <?php if(!isset($_GET['add']) || $_GET['add'] != "true"){echo 'style="padding-top: 70px;"';} /*if(!isset($_GET['add']) && count($library) == 0){var_dump("COUCOU"); echo 'style="display: none;"';}*/?>  id="searchBar">
         <input class="searchBarItem" type="text" id="search" name="recherche" placeholder="Votre recherche" />
         <select class="searchBarItem" name="searchBy" id="searchBySelector">
             <option value="">Rechercher Par</option>
