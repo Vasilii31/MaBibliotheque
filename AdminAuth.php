@@ -22,7 +22,7 @@
     <div class="content">
         <div class="formAuth">
         <h1 id="authTitle"  class="title">Veuillez saisir le code Administrateur</h1>
-            <form class="formAuthForm" action="processAuth.php" method="post">
+            <form class="formAuthForm" action="/BackEnd/processAuth.php" method="post">
                 <input  class="inputfields" type="password" id="mdp" name="f_password" placeholder="Code Administrateur">
                 <!--<p>Afficher le mot de passe :</p><button type="button" onclick="show_PasswordC()">O</button>-->
                 <input class="submitButton" type="submit" name="valid" value="Authentification">
